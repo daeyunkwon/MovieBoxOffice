@@ -147,11 +147,10 @@ final class ViewController: UIViewController {
     //MARK: - Functions
 
     @objc func searchButtonTapped() {
+        view.endEditing(true)
         guard let text = self.dateTextField.text, text.trimmingCharacters(in: .whitespaces).isEmpty == false else {return}
         
         callRequest(date: text)
-        
-        view.endEditing(true)
     }
     
     private func getYesterdayDateString() -> String {
