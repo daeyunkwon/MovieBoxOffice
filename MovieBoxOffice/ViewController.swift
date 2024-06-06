@@ -131,6 +131,8 @@ final class ViewController: UIViewController {
         backImageView.image = UIImage.back
     }
     
+    //MARK: - Functions
+    
     private func callRequest(date: String) {
         let url = APIURL.apiURL(key: APIKey.apiKey, targetDate: date)
         AF.request(url).responseDecodable(of: BoxOfficeData.self) { response in
@@ -143,8 +145,6 @@ final class ViewController: UIViewController {
             }
         }
     }
-    
-    //MARK: - Functions
 
     @objc func searchButtonTapped() {
         view.endEditing(true)
