@@ -159,6 +159,7 @@ final class ViewController: UIViewController {
         let yesterdayDate = Date(timeIntervalSinceReferenceDate: todayDate)
         
         let formatter = DateFormatter()
+        formatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?
         formatter.locale = Locale(identifier: "ko_KR")
         formatter.dateFormat = "yyyyMMdd"
         let yesterday = formatter.string(from: yesterdayDate)
