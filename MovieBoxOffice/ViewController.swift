@@ -136,19 +136,6 @@ final class ViewController: UIViewController {
     }
     
     //MARK: - Functions
-    
-    private func callRequest(date: String) {
-        let url = APIURL.apiURL(key: APIKey.apiKey, targetDate: date)
-        AF.request(url).responseDecodable(of: BoxOfficeData.self) { response in
-            switch response.result {
-            case .success(let data):
-                self.movies = data.boxOfficeResult.dailyBoxOfficeList
-                self.tableView.reloadData()
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
-    }
 
     @objc func searchButtonTapped() {
         view.endEditing(true)
