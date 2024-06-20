@@ -73,7 +73,11 @@ final class ViewController: UIViewController {
     
     private func fetchData() {
         let yesterday = getYesterdayDateString()
-        callRequest(date: yesterday)
+        
+        NetworkManager.shared.fetchBoxOfficeData(date: yesterday) { data in
+            self.movies = data.boxOfficeResult.dailyBoxOfficeList
+            self.tableView.reloadData()
+        }
     }
     
     private func configureTableView() {
@@ -150,7 +154,10 @@ final class ViewController: UIViewController {
         view.endEditing(true)
         guard let text = self.dateTextField.text, text.trimmingCharacters(in: .whitespaces).isEmpty == false else {return}
         
-        callRequest(date: text)
+        NetworkManager.shared.fetchBoxOfficeData(date: text) { data in
+            self.movies = data.boxOfficeResult.dailyBoxOfficeList
+            self.tableView.reloadData()
+        }
     }
     
     private func getYesterdayDateString() -> String {
